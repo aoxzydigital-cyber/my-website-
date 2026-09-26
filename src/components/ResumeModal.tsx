@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, Printer, Download, Mail, Phone, Linkedin, Github, ExternalLink } from 'lucide-react';
+import { X, Download, Mail, Linkedin, Github, ExternalLink } from 'lucide-react';
 import { personalInfo, education, experiences, certifications, skillCategories } from '../data/portfolioData.ts';
 
 interface ResumeModalProps {
@@ -18,10 +18,6 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
   if (!isOpen) return null;
 
-  const handlePrint = () => {
-    window.print();
-  };
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto animate-fade-in print:p-0 print:bg-white print:backdrop-none">
       <div
@@ -38,13 +34,6 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           </div>
 
           <div className="flex items-center gap-2">
-            <button
-              onClick={handlePrint}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-zinc-700 bg-zinc-900 text-zinc-200 hover:text-white hover:border-zinc-500 transition"
-            >
-              <Printer className="w-3.5 h-3.5" />
-              <span>Print / Save PDF</span>
-            </button>
             <button
               onClick={onClose}
               className="p-1.5 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-white transition"
@@ -68,11 +57,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
             {/* Contact details */}
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-y-1 gap-x-3 pt-2 text-xs text-zinc-400 print:text-black font-mono">
-              <span className="flex items-center gap-1">
-                <Phone className="w-3 h-3 text-zinc-500 print:hidden" />
-                {personalInfo.phone}
-              </span>
-              <span aria-hidden="true" className="text-zinc-600 print:text-neutral-400">|</span>
+
               <a
                 href={`mailto:${personalInfo.email}`}
                 className="flex items-center gap-1 text-zinc-300 hover:text-blue-400 print:text-black transition"
